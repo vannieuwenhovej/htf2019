@@ -31,6 +31,7 @@ function resetSelectedBank(){
     document.querySelector("#selectedBank").innerText = "";
     document.querySelector("tbody").innerHTML = "";
     document.querySelector("#totalAccounts").innerText = "";
+      document.getElementById("remember").style.visibility = "hidden";
 }
 
 function changeSelectedBank(bank){
