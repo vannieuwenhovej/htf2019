@@ -29,6 +29,7 @@ function checkBank(){
 function resetSelectedBank(){
     document.querySelector("#selectedBank").innerText = "";
     document.querySelector("tbody").innerHTML = "";
+      document.getElementById("remember").style.visibility = "hidden";
 }
 
 function changeSelectedBank(bank){
