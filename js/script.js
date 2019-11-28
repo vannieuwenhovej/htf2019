@@ -8,6 +8,7 @@ function init() {
     getBank('caymannationalbank');
     getAccountsOfBank('caymannationalbank');
     getTransactionsOfBank('caymannationalbank');
+    FillBank();
 }
 
 
@@ -104,6 +105,15 @@ async function bankByNameAPICall(url = '', data = {}) {
         referrer: 'no-referrer',
     });
     return await response.json();
+}
+
+
+async function FillBank(){
+let array = getAllBanks()
+
+console.log(array)
+
+
 }
 
 //ASYNC FUNCTION to call the function

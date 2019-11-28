@@ -25,6 +25,7 @@
     <link href="css/nucleo-icons.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link href="css/black-dashboard.css" rel="stylesheet" />
+    <link href="css/Dropdown.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
 
 </head>
@@ -71,7 +72,12 @@
               <span class="navbar-toggler-bar bar3"></span>
             </button>
           </div>
-          <a class="navbar-brand" href="javascript:void(0)">Table List</a>
+          <select class="dropdown" placeholder="Please choose">
+      <option></option>
+      <option>List entry #2</option>
+      <option>List entry #3</option>
+      <option>List entry #4</option>
+  </select>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -284,7 +290,8 @@
       <script src="js/plugins/bootstrap-notify.js"></script>
       <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
       <script src="js/black-dashboard.min.js?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
-      <script>
+      <script src="js/Dropdown.js"></script>
+      <script src="js/script.js"></script>
 
 
 </body>
