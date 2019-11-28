@@ -71,6 +71,39 @@ async function fillUpTableWithAccounts(bankname){
                 let text;
 
                 switch (bankname){
+                    case "/caymannationalbank/":
+                        text = "                    <tr>\n" +
+                            "                      <td>\n"  + data[prop][sec].id +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].gender +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].firstName + data[prop][sec].lastName +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].nationality +
+                            "                      </td>\n" +
+                            "                      <td class=\"text-center\">\n" + data[prop][sec].account.balance + " " + data[prop][sec].account.currency +
+                            "                      <td>\n" +
+                            "                    </tr>";
+                        tbody.innerHTML += text;
+                        break;
+
+                    case "/bancosantacruz/":
+                    case "/centralbankbahamas/":
+                        text = "                    <tr>\n" +
+                            "                      <td>\n"  + data[prop][sec].id +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].gender +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].firstName + " " + data[prop][sec].lastName +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].nationality +
+                            "                      </td>\n" +
+                            "                      <td class=\"text-center\">\n" + data[prop][sec].account.balance + " " + data[prop][sec].account.currency +
+                            "                      <td>\n" +
+                            "                    </tr>";
+                        tbody.innerHTML += text;
+                        break;
+
                     case "/belizebank/":
                         text = "                    <tr>\n" +
                             "                      <td>\n"  + data[prop][sec].id +
@@ -84,10 +117,27 @@ async function fillUpTableWithAccounts(bankname){
                             "                      <td class=\"text-center\">\n" + data[prop][sec].account.balance +
                             "                      <td>\n" +
                             "                    </tr>";
-
-
                         tbody.innerHTML += text;
                         break;
+
+                    case "/dbssingapore/":
+                    case "/swissnationalbank/":
+                        text = "                    <tr>\n" +
+                            "                      <td>\n"  + data[prop][sec].id +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].gender +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].name +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].country +
+                            "                      </td>\n" +
+                            "                      <td class=\"text-center\">\n" + data[prop][sec].card.balance +
+                            "                      <td>\n" +
+                            "                    </tr>";
+                        tbody.innerHTML += text;
+                        break;
+
+
                 }
 
             }
