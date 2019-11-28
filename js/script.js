@@ -4,8 +4,13 @@ document.addEventListener("DOMContentLoaded", init);
 
 function init() {
     console.log("script loaded.");
-    testAPI()
+    getAllBanks();
+    getBank('caymannationalbank');
+    getAccountsOfBank('caymannationalbank');
 }
+
+
+const baseurl = "https://htf.zinderlabs.com";
 
 
 async function testAPI(){
@@ -33,7 +38,6 @@ async function testAPI(){
 
 
 async function testAPICall(url = '', data = {}) {
-    let baseurl = "https://htf.zinderlabs.com";
         // Default options are marked with *
         const response = await fetch(baseurl + url, {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -51,5 +55,126 @@ async function testAPICall(url = '', data = {}) {
         return await response.json(); // parses JSON response into native JavaScript objects
 }
 
+// =============================================================================================
+// ALL BANKS
+async function allBanksAPICall(url = '', data = {}) {
+    let baseurl = "https://htf.zinderlabs.com";
+    const response = await fetch(baseurl + url, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'cc6a77ff1309fd4516b9b9b0b929f7a1'
+        },
+        redirect: 'follow',
+        referrer: 'no-referrer',
+    });
+    return await response.json();
+}
+
+//ASYNC FUNCTION to call the function
+async function getAllBanks(){
+    try {
+        const data = await allBanksAPICall('/banks');
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+// =============================================================================================
 
 
+// =============================================================================================
+// BANK BY NAME
+async function bankByNameAPICall(url = '', data = {}) {
+    let baseurl = "https://htf.zinderlabs.com";
+    const response = await fetch(baseurl + url, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'cc6a77ff1309fd4516b9b9b0b929f7a1'
+        },
+        redirect: 'follow',
+        referrer: 'no-referrer',
+    });
+    return await response.json();
+}
+
+//ASYNC FUNCTION to call the function
+async function getBank(bankname){
+    try {
+        const data = await allBanksAPICall('/' + bankname);
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+// =============================================================================================
+
+
+// =============================================================================================
+// BANK BY NAME
+async function bankByNameAPICall(url = '', data = {}) {
+    let baseurl = "https://htf.zinderlabs.com";
+    const response = await fetch(baseurl + url, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'cc6a77ff1309fd4516b9b9b0b929f7a1'
+        },
+        redirect: 'follow',
+        referrer: 'no-referrer',
+    });
+    return await response.json();
+}
+
+//ASYNC FUNCTION to call the function
+async function getBank(bankname){
+    try {
+        const data = await allBanksAPICall('/' + bankname);
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+// =============================================================================================
+
+
+
+// =============================================================================================
+// BANK BY NAME
+async function accountsOfBankAPICall(url = '', data = {}) {
+    let baseurl = "https://htf.zinderlabs.com";
+    const response = await fetch(baseurl + url, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'cc6a77ff1309fd4516b9b9b0b929f7a1'
+        },
+        redirect: 'follow',
+        referrer: 'no-referrer',
+    });
+    return await response.json();
+}
+
+//ASYNC FUNCTION to call the function
+async function getAccountsOfBank(bankname){
+    try {
+        const data = await accountsOfBankAPICall('/' + bankname + "/accounts");
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+// =============================================================================================
