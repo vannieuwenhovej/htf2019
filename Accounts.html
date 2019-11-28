@@ -76,17 +76,14 @@
     <!-- End Navbar -->
     <div class="content">
       <div class="row">
-        <select class="dropdown" placeholder="Please choose">
-            <option>List entry #1</option>
-            <option>List entry #2</option>
-            <option>List entry #3</option>
-            <option>List entry #4</option>
+        <select class="dropdown" placeholder="Please choose bank">
+            <option value="selectbank">Select a bank</option>
         </select>
         <div class="col-md-12">
                       <td>
           <div class="card  card-plain">
             <div class="card-header">
-              <h4 class="card-title"> Accounts of {BANKNAME}</h4>
+              <h4 class="card-title"> <a id="selectedBank"></a></h4>
               <p class="category"> {Amount} total accounts</p>
             </div>
             <div class="card-body">

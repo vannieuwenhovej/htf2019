@@ -8,14 +8,59 @@ function init() {
     // getBank('caymannationalbank');
     // getAccountsOfBank('caymannationalbank');
     // getTransactionsOfBank('caymannationalbank');
-    fillUpTableWithAccounts("belizebank");
+    // fillUpTableWithAccounts("belizebank");
+    fillSelectWithBankNames();
+    document.querySelector("select").addEventListener("change", checkBank);
 }
 
+function checkBank(){
+    let select = document.querySelector("select");
+    //todo: maybe make a switch because every bank has different properties in their objects.
+    if (!(select.value == "selectbank")){
+        changeSelectedBank(select.options[select.selectedIndex].text);
+        fillUpTableWithAccounts(select.value);
+    } else{
+        resetSelectedBank();
+    }
+}
+
+function resetSelectedBank(){
+    document.querySelector("#selectedBank").innerText = "";
+    document.querySelector("tbody").innerHTML = "";
+}
+
+function changeSelectedBank(bank){
+    document.querySelector("#selectedBank").innerText = "Accounts of " + bank;
+}
+
+async function fillSelectWithBankNames(){
+    let select = document.querySelector("select");
+    try {
+        const data = await allBanksAPICall('/banks');
+
+        console.log('hi');
+        for( let prop in data ){
+            console.log(data[prop]);
+            let opt = document.createElement('option');
+            opt.value = data[prop].apiPath;
+            opt.innerHTML = data[prop].name;
+            select.appendChild(opt);
+        }
+
+
+    } catch (error) {
+        console.error(error);
+    }
+
+}
 
 async function fillUpTableWithAccounts(bankname){
+
+    console.log(bankname);
   let tbody = document.querySelector("tbody");
+  tbody.innerHTML = "";
     try {
-        const data = await accountsOfBankAPICall('/' + bankname + "/accounts");
+        const data = await accountsOfBankAPICall(bankname + "accounts");
         console.log(data.length);
         console.log("got here");
         let i=0;
@@ -23,20 +68,28 @@ async function fillUpTableWithAccounts(bankname){
         for( let prop in data ){ //prop[data] is all the json objects
             for (let sec in data[prop]){ //prop[data][sec] is 1 JSON object
                 console.log(data[prop][sec].account);
+                let text;
 
-                let text = "                    <tr>\n" +
-                    "                      <td>\n"  + data[prop][sec].id +
-                        "                      </td>\n" +
-                    "                      <td>\n" + data[prop][sec].gender +
-                    "                      </td>\n" +
-                    "                      <td>\n" + data[prop][sec].surname + " " + data[prop][sec].name +
-                    "                      </td>\n" +
-                    "                      <td>\n" + data[prop][sec].nationality +
-                    "                      </td>\n" +
-                    "                      <td class=\"text-center\">\n" + data[prop][sec].account.balance +
-                    "                      <td>\n" +
-                    "                    </tr>";
-                tbody.innerHTML += text;
+                switch (bankname){
+                    case "/belizebank/":
+                        text = "                    <tr>\n" +
+                            "                      <td>\n"  + data[prop][sec].id +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].gender +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].surname + " " + data[prop][sec].name +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].nationality +
+                            "                      </td>\n" +
+                            "                      <td class=\"text-center\">\n" + data[prop][sec].account.balance +
+                            "                      <td>\n" +
+                            "                    </tr>";
+
+
+                        tbody.innerHTML += text;
+                        break;
+                }
+
             }
         }
 
