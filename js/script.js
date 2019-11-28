@@ -4,10 +4,10 @@ document.addEventListener("DOMContentLoaded", init);
 
 function init() {
     console.log("script loaded.");
-    getAllBanks();
-    getBank('caymannationalbank');
-    getAccountsOfBank('caymannationalbank');
-    getTransactionsOfBank('caymannationalbank');
+    // getAllBanks();
+    // getBank('caymannationalbank');
+    // getAccountsOfBank('caymannationalbank');
+    // getTransactionsOfBank('caymannationalbank');
     fillUpTableWithAccounts("belizebank");
 }
 
@@ -18,28 +18,27 @@ async function fillUpTableWithAccounts(bankname){
         const data = await accountsOfBankAPICall('/' + bankname + "/accounts");
         console.log(data.length);
         console.log("got here");
-        for (let i=0; i<data.length; i++){
-            console.log("NUMBER " + i + " " + JSON.stringify(data[i]));
-        }
+        let i=0;
 
-        // let text = "\n" +
-        //     "                    <tr>\n" +
-        //     "                      <td>\n" +  +
-        //         "                      </td>\n" +
-        //     "                      <td>\n" +
-        //     "                        Niger\n" +
-        //     "                      </td>\n" +
-        //     "                      <td>\n" +
-        //     "                        Oud-Turnhout\n" +
-        //     "                      </td>\n" +
-        //     "                      <td>\n" +
-        //     "                        Oud-Turnhout\n" +
-        //     "                      </td>\n" +
-        //     "                      <td class=\"text-center\">\n" +
-        //     "                        $36,738\n" +
-        //     "                      </td>\n" +
-        //     "                    </tr>";
-        // tbody.innerHTML += data;
+        for( let prop in data ){ //prop[data] is all the json objects
+            for (let sec in data[prop]){ //prop[data][sec] is 1 JSON object
+                console.log(data[prop][sec].account);
+
+                let text = "                    <tr>\n" +
+                    "                      <td>\n"  + data[prop][sec].id +
+                        "                      </td>\n" +
+                    "                      <td>\n" + data[prop][sec].gender +
+                    "                      </td>\n" +
+                    "                      <td>\n" + data[prop][sec].surname + " " + data[prop][sec].name +
+                    "                      </td>\n" +
+                    "                      <td>\n" + data[prop][sec].nationality +
+                    "                      </td>\n" +
+                    "                      <td class=\"text-center\">\n" + data[prop][sec].account.balance +
+                    "                      <td>\n" +
+                    "                    </tr>";
+                tbody.innerHTML += text;
+            }
+        }
 
 
     } catch (error) {
