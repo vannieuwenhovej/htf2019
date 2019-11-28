@@ -7,6 +7,7 @@ function init() {
     getAllBanks();
     getBank('caymannationalbank');
     getAccountsOfBank('caymannationalbank');
+    getTransactionsOfBank('caymannationalbank');
 }
 
 
@@ -150,7 +151,7 @@ async function getBank(bankname){
 
 
 // =============================================================================================
-// BANK BY NAME
+// ACCOUNTS OF BANK
 async function accountsOfBankAPICall(url = '', data = {}) {
     let baseurl = "https://htf.zinderlabs.com";
     const response = await fetch(baseurl + url, {
@@ -172,6 +173,38 @@ async function accountsOfBankAPICall(url = '', data = {}) {
 async function getAccountsOfBank(bankname){
     try {
         const data = await accountsOfBankAPICall('/' + bankname + "/accounts");
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+// =============================================================================================
+
+
+
+// =============================================================================================
+// TRANSACTIONS OF BANK
+async function transactionsofBankCall(url = '', data = {}) {
+    let baseurl = "https://htf.zinderlabs.com";
+    const response = await fetch(baseurl + url, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'cc6a77ff1309fd4516b9b9b0b929f7a1'
+        },
+        redirect: 'follow',
+        referrer: 'no-referrer',
+    });
+    return await response.json();
+}
+
+//ASYNC FUNCTION to call the function
+async function getTransactionsOfBank(bankname){
+    try {
+        const data = await transactionsofBankCall('/' + bankname + "/transactions");
         console.log(data);
     } catch (error) {
         console.error(error);
