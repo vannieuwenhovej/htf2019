@@ -14,6 +14,7 @@ function init() {
 }
 
 function checkBank(){
+  document.getElementById("remember").style.visibility = "visible";
     let select = document.querySelector("select");
     //todo: maybe make a switch because every bank has different properties in their objects.
     if (!(select.value == "selectbank")){
@@ -22,6 +23,7 @@ function checkBank(){
     } else{
         resetSelectedBank();
     }
+
 }
 
 function resetSelectedBank(){
@@ -34,6 +36,8 @@ function changeSelectedBank(bank){
 }
 
 async function fillSelectWithBankNames(){
+
+
     let select = document.querySelector("select");
     try {
         const data = await allBanksAPICall('/banks');
@@ -56,9 +60,11 @@ async function fillSelectWithBankNames(){
 
 async function fillUpTableWithAccounts(bankname){
 
-    console.log(bankname);
-  let tbody = document.querySelector("tbody");
+
+let tbody = document.querySelector("tbody");
   tbody.innerHTML = "";
+
+
     try {
         const data = await accountsOfBankAPICall(bankname + "accounts");
         console.log(data.length);
@@ -147,6 +153,7 @@ async function fillUpTableWithAccounts(bankname){
     } catch (error) {
         console.error(error);
     }
+      document.getElementById("remember").style.visibility = "hidden";
 
 }
 
