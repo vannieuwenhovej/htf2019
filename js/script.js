@@ -8,8 +8,49 @@ function init() {
     getBank('caymannationalbank');
     getAccountsOfBank('caymannationalbank');
     getTransactionsOfBank('caymannationalbank');
+    fillUpTableWithAccounts("belizebank");
 }
 
+
+async function fillUpTableWithAccounts(bankname){
+  let tbody = document.querySelector("tbody");
+    try {
+        const data = await accountsOfBankAPICall('/' + bankname + "/accounts");
+        console.log(data.length);
+        console.log("got here");
+        for (let i=0; i<data.length; i++){
+            console.log("NUMBER " + i + " " + JSON.stringify(data[i]));
+        }
+
+        // let text = "\n" +
+        //     "                    <tr>\n" +
+        //     "                      <td>\n" +  +
+        //         "                      </td>\n" +
+        //     "                      <td>\n" +
+        //     "                        Niger\n" +
+        //     "                      </td>\n" +
+        //     "                      <td>\n" +
+        //     "                        Oud-Turnhout\n" +
+        //     "                      </td>\n" +
+        //     "                      <td>\n" +
+        //     "                        Oud-Turnhout\n" +
+        //     "                      </td>\n" +
+        //     "                      <td class=\"text-center\">\n" +
+        //     "                        $36,738\n" +
+        //     "                      </td>\n" +
+        //     "                    </tr>";
+        // tbody.innerHTML += data;
+
+
+    } catch (error) {
+        console.error(error);
+    }
+
+}
+
+// =============================================================================
+// ========================== API CALLS ========================================
+// =============================================================================
 
 const baseurl = "https://htf.zinderlabs.com";
 
@@ -22,7 +63,6 @@ async function testAPI(){
         console.error(error);
     }
 }
-
 
 
 async function testAPICall(url = '', data = {}) {
@@ -96,45 +136,13 @@ async function bankByNameAPICall(url = '', data = {}) {
 //ASYNC FUNCTION to call the function
 async function getBank(bankname){
     try {
-        const data = await allBanksAPICall('/' + bankname);
+        const data = await bankByNameAPICall('/' + bankname);
         console.log(data);
     } catch (error) {
         console.error(error);
     }
 }
 // =============================================================================================
-
-
-// =============================================================================================
-// BANK BY NAME
-async function bankByNameAPICall(url = '', data = {}) {
-    let baseurl = "https://htf.zinderlabs.com";
-    const response = await fetch(baseurl + url, {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'cc6a77ff1309fd4516b9b9b0b929f7a1'
-        },
-        redirect: 'follow',
-        referrer: 'no-referrer',
-    });
-    return await response.json();
-}
-
-//ASYNC FUNCTION to call the function
-async function getBank(bankname){
-    try {
-        const data = await allBanksAPICall('/' + bankname);
-        console.log(data);
-    } catch (error) {
-        console.error(error);
-    }
-}
-// =============================================================================================
-
 
 
 // =============================================================================================
