@@ -132,13 +132,13 @@ let tbody = document.querySelector("tbody");
                 switch (bankname){
                     case "/caymannationalbank/":
                         text = "                    <tr>\n" +
-                            "                      <td><a href>\n"  + data[prop][sec].id + "</a>" +
+                            "                      <td><a target='_blank' href='transactionview.html?id=" + data[prop][sec].id + "'>\n"  + data[prop][sec].id + "</a>" +
                             "                      </td>\n" +
                             "                      <td>\n" + data[prop][sec].account.transactions.length +
                             "                      </td>\n" +
                             "                      <td>\n" + data[prop][sec].gender +
                             "                      </td>\n" +
-                            "                      <td>\n" + data[prop][sec].firstName + data[prop][sec].lastName +
+                            "                      <td>\n" + data[prop][sec].firstName + " " + data[prop][sec].lastName +
                             "                      </td>\n" +
                             "                      <td>\n" + data[prop][sec].nationality +
                             "                      </td>\n" +
@@ -402,3 +402,15 @@ async function getTransactionsOfBank(bankname){
     }
 }
 // =============================================================================================
+
+
+//==============================================================================================
+//========================= PART FOR TRANSACTIONS FILE =========================================
+//==============================================================================================
+
+function getIDFromURL(){
+    let url_string = window.location.href;
+    let url = new URL(url_string);
+    let c = url.searchParams.get("id");
+    console.log(c);
+}
