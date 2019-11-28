@@ -26,6 +26,7 @@
     <!-- CSS Files -->
     <link href="css/black-dashboard.css" rel="stylesheet" />
     <link href="css/Dropdown.css" rel="stylesheet" />
+      <link href="css/Loading.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
 
 </head>
@@ -44,7 +45,7 @@
                 </a>
             </div>
             <ul class="nav">
-                <li class="active ">
+                <li>
                     <a href="./dashboard.html">
                         <i class="tim-icons icon-chart-pie-36"></i>
                         <p>Dashboard</p>
@@ -52,7 +53,7 @@
                 </li>
                 <li>
                     <a href="./Accounts.html">
-                      <i class="tim-icons icon-chart-pie-36"></i>
+                      <i class="tim-icons icon-bank"></i>
                         <p>Accounts</p>
                     </a>
                 </li>
@@ -103,6 +104,7 @@
                       <th>
                         Nationality
                       </th>
+
                       <th class="text-center">
                         Balance
                       </th>
@@ -134,6 +136,13 @@
         </div>
       </div>
     </div>
+    <div class="wrap">
+  <div class="loader"></div>
+  <div class="loaderbefore"></div>
+  <div class="circular"></div>
+  <div class="circular another"></div>
+<div class="text">Loading</div>
+</div>
     <script src="js/core/jquery.min.js"></script>
       <script src="js/core/popper.min.js"></script>
       <script src="js/core/bootstrap.min.js"></script>
@@ -148,7 +157,7 @@
       <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
       <script src="js/black-dashboard.min.js?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
       <script src="js/Dropdown.js"></script>
-      <script src="js/script.js"></script>
+      <!-- <script src="js/script.js"></script> -->
 
 
 </body>
