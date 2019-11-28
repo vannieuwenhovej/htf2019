@@ -18,6 +18,7 @@ function checkBank(){
     let select = document.querySelector("select");
     //todo: maybe make a switch because every bank has different properties in their objects.
     if (!(select.value == "selectbank")){
+        document.querySelector("#totalAccounts").innerText = "";
         changeSelectedBank(select.options[select.selectedIndex].text);
         fillUpTableWithAccounts(select.value);
     } else{
@@ -29,6 +30,7 @@ function checkBank(){
 function resetSelectedBank(){
     document.querySelector("#selectedBank").innerText = "";
     document.querySelector("tbody").innerHTML = "";
+    document.querySelector("#totalAccounts").innerText = "";
 }
 
 function changeSelectedBank(bank){
@@ -67,11 +69,12 @@ let tbody = document.querySelector("tbody");
 
     try {
         const data = await accountsOfBankAPICall(bankname + "accounts");
-        console.log(data.length);
         console.log("got here");
         let i=0;
 
         for( let prop in data ){ //prop[data] is all the json objects
+            document.querySelector("#totalAccounts").innerText = data[prop].length + " total accounts";
+            console.log("length" + data[prop].length);
             for (let sec in data[prop]){ //prop[data][sec] is 1 JSON object
                 console.log(data[prop][sec].account);
                 let text;
@@ -79,7 +82,9 @@ let tbody = document.querySelector("tbody");
                 switch (bankname){
                     case "/caymannationalbank/":
                         text = "                    <tr>\n" +
-                            "                      <td>\n"  + data[prop][sec].id +
+                            "                      <td><a href>\n"  + data[prop][sec].id + "</a>" +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].account.transactions.length +
                             "                      </td>\n" +
                             "                      <td>\n" + data[prop][sec].gender +
                             "                      </td>\n" +
@@ -98,6 +103,8 @@ let tbody = document.querySelector("tbody");
                         text = "                    <tr>\n" +
                             "                      <td>\n"  + data[prop][sec].id +
                             "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].account.transactions.length +
+                            "                      </td>\n" +
                             "                      <td>\n" + data[prop][sec].gender +
                             "                      </td>\n" +
                             "                      <td>\n" + data[prop][sec].firstName + " " + data[prop][sec].lastName +
@@ -114,6 +121,8 @@ let tbody = document.querySelector("tbody");
                         text = "                    <tr>\n" +
                             "                      <td>\n"  + data[prop][sec].id +
                             "                      </td>\n" +
+                            "                      <td>\n" + "N/A" +
+                            "                      </td>\n" +
                             "                      <td>\n" + data[prop][sec].gender +
                             "                      </td>\n" +
                             "                      <td>\n" + data[prop][sec].surname + " " + data[prop][sec].name +
@@ -127,9 +136,28 @@ let tbody = document.querySelector("tbody");
                         break;
 
                     case "/dbssingapore/":
+                        text = "                    <tr>\n" +
+                            "                      <td>\n"  + data[prop][sec].id +
+                            "                      </td>\n" +
+                            "                      <td>\n" + "N/A" +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].gender +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].name +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].country +
+                            "                      </td>\n" +
+                            "                      <td class=\"text-center\">\n" + data[prop][sec].card.balance +
+                            "                      <td>\n" +
+                            "                    </tr>";
+                        tbody.innerHTML += text;
+                        break;
+
                     case "/swissnationalbank/":
                         text = "                    <tr>\n" +
                             "                      <td>\n"  + data[prop][sec].id +
+                            "                      </td>\n" +
+                            "                      <td>\n" + data[prop][sec].card.transactions.length +
                             "                      </td>\n" +
                             "                      <td>\n" + data[prop][sec].gender +
                             "                      </td>\n" +
