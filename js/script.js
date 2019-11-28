@@ -23,19 +23,6 @@ async function testAPI(){
     }
 }
 
-// function testAPICall(){
-//     let baseurl = "https://htf.zinderlabs.com";
-//
-//     fetch(baseurl + "/banks", { method:"GET", headers: { "Authorization": "cc6a77ff1309fd4516b9b9b0b929f7a1" }}) // Call the fetch function passing the url of the API as a parameter
-//         .then(function(res) {
-//             console.log(res);
-//         })
-//         .catch(function(err) {
-//             console.log(err);
-//         });
-//
-// }
-
 
 
 async function testAPICall(url = '', data = {}) {
