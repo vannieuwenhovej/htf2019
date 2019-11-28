@@ -54,6 +54,10 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+#chart{
+  color: white;
+}
+
 *,
 *::before,
 *::after {

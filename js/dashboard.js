@@ -76,6 +76,15 @@ async function dashboardchart1(){
                     fontSize: '14px'
                 }
             }
+        },
+        yaxis: {
+
+            labels: {
+                style: {
+                    color: 'white',
+                    fontSize: '14px'
+                }
+            }
         }
     };
 
