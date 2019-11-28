@@ -88,7 +88,8 @@ let tbody = document.querySelector("tbody");
                 switch (bankname){
                     case "/caymannationalbank/":
                         text = "                    <tr>\n" +
-                            "                      <td><a target='_blank' href='transactionview.html?id=" + data[prop][sec].id + "'>\n"  + data[prop][sec].id + "</a>" +
+                            // "                      <td><a target='_blank' href='transactionview.html?id=" + data[prop][sec].id + "'>\n"  + data[prop][sec].id + "</a>" +
+                            "                      <td>\n"  + data[prop][sec].id +
                             "                      </td>\n" +
                             "                      <td>\n" + data[prop][sec].account.transactions.length +
                             "                      </td>\n" +
